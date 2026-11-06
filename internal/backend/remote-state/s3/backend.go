@@ -1085,7 +1085,7 @@ func (b *Backend) Configure(obj cty.Value) tfdiags.Diagnostics {
 		cfg.ForbiddenAccountIds = val
 	}
 
-	_ /* ctx */, awsConfig, cfgDiags := awsbase.GetAwsConfig(ctx, cfg)
+	awsConfig, cfgDiags := getAwsConfig(ctx, cfg)
 	for _, d := range cfgDiags {
 		diags = diags.Append(tfdiags.Sourceless(
 			baseSeverityToTerraformSeverity(d.Severity()),
